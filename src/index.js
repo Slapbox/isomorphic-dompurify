@@ -6,7 +6,9 @@ function initDOMPurifyWithJSDOM() {
   const DOMPurifyInitializer = importModule(require('dompurify'));
   const { JSDOM } = importModule(require('jsdom'));
   const { window } = new JSDOM('<!DOCTYPE html>');
-  return DOMPurifyInitializer(window);
+  const DOMPurify = DOMPurifyInitializer(window);
+  DOMPurify.window = window;
+  return DOMPurify
 }
 
 function resolveDOMPurify() {
